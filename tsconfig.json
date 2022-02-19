@@ -19,8 +19,8 @@
             ]
         },
         "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-        "types": ["vite/client"]
+        "types": ["vite/client", "vite-plugin-pwa"]
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+    "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "node_modules/vite-plugin-pwa/client.d.ts"],
     "exclude": ["node_modules"]
 }
