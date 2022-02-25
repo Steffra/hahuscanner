@@ -65,9 +65,7 @@
                 }, interval)
             }
             const start = () => {
-                fetchData(true)
-                fetchData(false)
-                poll(60000)
+                showNotification({ url: 'https://google.com' })
             }
             return {
                 URL,
@@ -98,6 +96,6 @@
             "
             type="text"
         />
-        <button @click="start()">Start!</button>
+        <button class="p-5" @click="start()">Start!</button>
     </div>
 </template>
