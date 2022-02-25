@@ -65,10 +65,16 @@
                     fetchData(false)
                 }, interval)
             }
+            const start = () => {
+                fetchData(true)
+                fetchData(false)
+                poll(60000)
+            }
             return {
                 URL,
                 poll,
                 fetchData,
+                start,
             }
         },
     })
@@ -93,14 +99,6 @@
             "
             type="text"
         />
-        <button
-            @click="
-                fetchData(true)
-                fetchData(false)
-                poll(60000)
-            "
-        >
-            Start!
-        </button>
+        <button @click="start()">Start!</button>
     </div>
 </template>
