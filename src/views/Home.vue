@@ -64,7 +64,9 @@
             const start = () => {
                 showNotification({ url: 'https://google.com' })
             }
-
+            const sendNotification = () => {
+                showNotification({ url: 'https://google.com' })
+            }
             const promptpermission = () => {
                 Notification.requestPermission().then((permission) => {
                     console.log(permission)
@@ -77,6 +79,7 @@
                 start,
                 permission,
                 promptpermission,
+                sendNotification,
             }
         },
     })
@@ -105,5 +108,7 @@
         {{ permission }}
 
         <button class="p-5" @click="promptpermission()">Prompt for permission!</button>
+        <hr />
+        <button class="p-5" @click="sendNotification()">Send a notification!</button>
     </div>
 </template>
