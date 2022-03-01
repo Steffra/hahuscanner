@@ -67,7 +67,16 @@
             const sendNotification = () => {
                 console.log(navigator.serviceWorker)
                 navigator.serviceWorker.ready.then(function (registration) {
-                    registration.showNotification('Notification with ServiceWorker')
+                    var options = {
+                        body: 'Here is a notification body!',
+                        icon: 'assets/logo.png',
+                        vibrate: [100, 50, 100],
+                        data: {
+                            dateOfArrival: Date.now(),
+                            primaryKey: 1,
+                        },
+                    }
+                    registration.showNotification('noti title', options)
                 })
             }
             const promptpermission = () => {
