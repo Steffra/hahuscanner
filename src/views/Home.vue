@@ -9,7 +9,7 @@
             const URL = ref(
                 'https://www.hasznaltauto.hu/talalatilista/PCOG2VG3N3NTADH5C574AEGHJHN2TDZLQIKRRAQCAP5GVMBR4MUJNRCASKGSMRP7PWKOZLESDO7ZRYHVSA6BJCHKIF6DQUJOIXIYDR4WVSCC2DWFEPVUUUNYBNVFIZ7IHVC5KSQUUBZMP3PEHKQEOBNW23JAJV4FFCFLSBO6QPVF4FHFOII352FQCYC7NNWOYK33ODBBXIIVK5KX72UFNC77L446COUAXMMFBPR6QLKX2TGNQXRJ6K5WMDA6YJBI5FXDQLCDU6QMRXFQGGGDPNFIB3UOTBRZKSLLMYMQN2AIMMIUR5XWFEKZNABUOD2HTD5OFSPMXER7M7LO5BVX5EZODFAKUDGNN7D6CWLUXXZC4VFPDDCTJRUHHGHF7TXOX4TMTU7ZJUNP7IQ54QHF3OVBOF3C7B5TEXZSUG5EVG7ZQ56JYKXHPHXUD7U7ZCZFJVPJE6LOSIGHOMOB5PZTMDJMP6FEFOUNDUB2K2JXKJ43J2PMDCZANW2BFWNWWM2VCUSA5VOUUBJJHBIRS3V5LQYU4PS2S52HKQZZNYOAZMAX7ZI7Y4YMTVW7VQRQPI5VLRGHJ3HEEB6Z5EAZWFT5E6675FSCHGPWXIJENW7TTGADSQ23HQBLP5ZBI4DMIPR7MMEVACSO4SBX3HO3UUUEO6IZ4TSSQV2BVZDHSFPE2UUK6Y56SJDXKQGTULW22T7A4XVCXPWQHYJZBOU2HGXGDVTFV7IOC5YTG7CSGVVIF7KMLJVK6BGPB5GDKOQMCQ52NN3CNZZODWPUTF7K54BAK2BP34ZWFMAWCV3D44GJ2XYKMIALBI2VJT6EG4ZFKM4HHMSTLTAI4RIZ6AU6VRBDZZ6A6RFUPZR4UQ3B4EN22MGPYQEGBZSKTTNS6DLDQB42GO5HUT5WAWSTGRHX4PF4N36KXQ635BX2CTX2SHXSQP5BZV6BBZH3J2ZVTICPRZZ7FZ33JFA'
             )
-
+            const permission = ref(Notification.permission)
             const showNotification = (listing: any) => {
                 const notification = new Notification('New car for sale!', {
                     body: 'A new car has been listed for sale according to the search criteria you have set.',
@@ -23,9 +23,6 @@
             if (Notification.permission === 'granted') {
                 console.log('notification_permission_granted')
             }
-            Notification.requestPermission().then((permission) => {
-                console.log(permission)
-            })
 
             const getDataFromElement = (html: any) => {
                 const url: string = html.querySelector('h3 a').getAttribute('href')!
@@ -67,11 +64,19 @@
             const start = () => {
                 showNotification({ url: 'https://google.com' })
             }
+
+            const promptpermission = () => {
+                Notification.requestPermission().then((permission) => {
+                    console.log(permission)
+                })
+            }
             return {
                 URL,
                 poll,
                 fetchData,
                 start,
+                permission,
+                promptpermission,
             }
         },
     })
@@ -97,5 +102,8 @@
             type="text"
         />
         <button class="p-5" @click="start()">Start!</button>
+        {{ permission }}
+
+        <button class="p-5" @click="promptpermission()">Prompt for permission!</button>
     </div>
 </template>
