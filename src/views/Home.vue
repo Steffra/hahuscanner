@@ -65,7 +65,10 @@
                 showNotification({ url: 'https://google.com' })
             }
             const sendNotification = () => {
-                showNotification({ url: 'https://google.com' })
+                console.log(navigator.serviceWorker)
+                navigator.serviceWorker.ready.then(function (registration) {
+                    registration.showNotification('Notification with ServiceWorker')
+                })
             }
             const promptpermission = () => {
                 Notification.requestPermission().then((permission) => {
